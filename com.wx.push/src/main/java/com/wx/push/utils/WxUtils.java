@@ -158,10 +158,6 @@ public class WxUtils {
         String templateId = "";
         if(null != js && !"".equals(js)){
             JSONObject jsonObject = JSONObject.parseObject(js);
-//            if(null != jsonObject){
-//                templateId = jsonObject.getString("template_id");
-//                String errs = jsonObject.getString("errmsg");
-//            }
         }
         return templateId;
     }

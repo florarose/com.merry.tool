@@ -1,0 +1,5 @@
+com\mongdb\demo\mongdbServiceImpl.class
+com\mongdb\demo\MongoConfig.class
+com\mongdb\MongdbApplication.class
+com\mongdb\demo\PublishVisit.class
+com\mongdb\demo\publishDao.class

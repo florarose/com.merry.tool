@@ -12,10 +12,8 @@ import java.util.*;
 public class dingdingUtils {
 
     private static Logger logger = LoggerFactory.getLogger(dingdingUtils.class);
-    public static final String CORP_ID = "ding634400332c66bff0";
-    public static final String CORP_SECRET = "2S__mpQeHZ6vnxbHQjUJQmPnMf1qPZAAu5V0i83Jc0YeloDq00K1grpDJPBF3brf";
-    public static final String TEST_CORP_ID = "dingd48f604a7227148335c2f4657eb6378f";
-    public static final String TEST_CORP_SECRET = "w8arjumwU7u7cmVIXpUmwZU0iRW5icbKWk9Yt6SuWhOUtz9in9tARQ5LG1doKAky";
+    public static final String CORP_ID = "";
+    public static final String CORP_SECRET = "";
     /**
      * 获取access_token
      */

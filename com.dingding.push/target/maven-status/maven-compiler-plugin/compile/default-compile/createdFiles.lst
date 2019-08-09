@@ -1,0 +1,7 @@
+com\dingding\push\entity\SendResult.class
+com\dingding\push\utils\Message.class
+demo.class
+com\dingding\push\utils\HttpUtil.class
+com\dingding\push\utils\TextMessage.class
+com\dingding\push\utils\dingdingUtils.class
+com\dingding\push\utils\DingtalkChatbotClient.class
