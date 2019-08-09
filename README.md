@@ -1,7 +1,23 @@
-# tool
-com.dingding.push  钉钉推送
-com.image.upload 图片上传
-com.wx.login 微信登录
-com.wx.push 公众号推送
-com.java.common java基本方法的封装
-com.redis.study redis的基本使用
+# 学习笔记
+## 目录
+- com.dingding.push
+  + 钉钉推送系列
+- com.image.upload
+  + 图片上传，裁剪、压缩等处理
+- com.java.common
+- com.leetCode.study
+  + 力扣算法学习源码
+  
+    + 更新了单链表的增删查
+- com.redis.study
+  + 整合redis学习
+- com.wx.login
+  + 微信登录
+- com.wx.push
+  + 微信推送
+- com.wx.security
+  + 微信解密，用户信息获取后后端解密
+- springboot-mongdb
+  + 整合mongdb，初步使用
+- Springboot-Json
+  + Springboot返回值的处理，包括各种类型，以及想要返回自己固定的个别属性
