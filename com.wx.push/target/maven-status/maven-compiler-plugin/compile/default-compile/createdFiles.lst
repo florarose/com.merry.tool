@@ -1,8 +1,0 @@
-com\wx\push\utils\HttpUtil.class
-com\wx\push\constant\WxConstants.class
-com\wx\push\utils\AccessTokenUtil.class
-com\wx\push\api\WxPushApi.class
-com\demo.class
-com\wx\push\entity\UserList.class
-com\wx\push\entity\AccessToken.class
-com\wx\push\utils\WxUtils.class
