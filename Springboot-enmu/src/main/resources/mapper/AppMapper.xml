@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.enmu.dao.AppMapper">
+	<resultMap id="BaseResultMap" type="com.springboot.enmu.entity.App">
+		<id column="id" property="id"/>
+		<result column="platform_type" property="platformType"
+				typeHandler="com.springboot.enmu.config.AutoEnumTypeHandler"/>
+	</resultMap>
+	<select id="getApp" parameterType="int" resultMap="BaseResultMap">
+		select * from version where id = #{id}
+	</select>
+</mapper>

@@ -19,6 +19,8 @@
         <module>com.wx.security</module>
         <module>springboot-mongdb</module>
         <module>Springboot-Json</module>
+        <module>Design_pattern</module>
+        <module>Springboot-enmu</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -26,5 +28,13 @@
         <version>1.5.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <repositories>
+        <repository>
+            <id>nexus-aliyun</id>
+            <name>Nexus aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 
 </project>
