@@ -1,12 +1,13 @@
-package com.leetCode.study.Demo_2019_8_8_Linked;
+package com.leetCode.study.Demo_2019_8_8_Linked.jichu.Single_linked;
 
 /**
+ * 单链表的增删
  * @author liudongting
  * @date 2019/8/8 10:56
  */
 public class List {
 
-    static  SinglyListNode head;
+    static SinglyListNode head;
 
     /**
      *

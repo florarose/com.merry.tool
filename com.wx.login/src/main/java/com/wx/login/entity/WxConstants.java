@@ -7,8 +7,8 @@ public class WxConstants {
     /**
      * 微信公众号的信息
      */
-    public static final  String APPID = "wx3f0a6ae6277446d0";
-    public static final  String APPSECRET = "a74f234198b043bc91dca1422979b883";
+    public static final  String APPID = "";
+    public static final  String APPSECRET = "";
 
 
     //授权

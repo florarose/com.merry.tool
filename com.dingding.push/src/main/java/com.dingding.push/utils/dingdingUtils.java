@@ -108,7 +108,7 @@ public class dingdingUtils {
         Map<String,Object> message= getAccess_token();
         List<Map<String,Object>>  departmetnLsit= getDepartmentList((String) message.get("access_token"));
         for(int i=0;i<departmetnLsit.size();i++){
-           if(departmetnLsit.get(i).get("name").equals("刘淑艳")){
+           if(departmetnLsit.get(i).get("name").equals("xxx")){
                String userId =(String) departmetnLsit.get(i).get("userid");
                JSONObject jsonObject =  getUserDetail(userId,(String) message.get("access_token"));
                String  bb =(String) jsonObject.get("hiredDate");

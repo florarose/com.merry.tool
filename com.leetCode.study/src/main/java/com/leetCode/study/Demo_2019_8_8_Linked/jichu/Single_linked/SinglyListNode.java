@@ -1,4 +1,4 @@
-package com.leetCode.study.Demo_2019_8_8_Linked;
+package com.leetCode.study.Demo_2019_8_8_Linked.jichu.Single_linked;
 
 
 /**

@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * 访问记录
- * Created by Terry on 2019/05/27.
+ * @author liudongting
  */
 @Document(collection = "PublishVisit")
 public class PublishVisit {

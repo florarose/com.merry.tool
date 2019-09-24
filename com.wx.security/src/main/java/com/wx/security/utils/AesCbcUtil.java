@@ -14,12 +14,8 @@ import java.security.*;
 import java.security.spec.InvalidParameterSpecException;
 
 /**
- * Created by yfs on 2017/2/6.
- * <p>
+ * @author liudongting
  * AES-128-CBC 加密方式
- * 注：
- * AES-128-CBC可以自己定义“密钥”和“偏移量“。
- * AES-128是jdk自动生成的“密钥”。
  */
 public class AesCbcUtil {
  

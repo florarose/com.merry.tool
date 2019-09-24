@@ -1,8 +1,5 @@
-package com.wx.security.utils; /**
- * 对公众平台发送给公众账号的消息加解密示例代码.
- * 
- * @copyright Copyright (c) 1998-2014 Tencent Inc.
- */
+package com.wx.security.utils;
+
 
 // ------------------------------------------------------------------------
 
@@ -10,7 +7,7 @@ import java.nio.charset.Charset;
 import java.util.Arrays;
 
 /**
- * 提供基于PKCS7算法的加解密接口.
+ * 基于PKCS7算法的加解密接口.
  */
 class PKCS7Encoder {
 	static Charset CHARSET = Charset.forName("utf-8");

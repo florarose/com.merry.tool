@@ -11,7 +11,7 @@ import java.util.List;
 public class demo {
 
     private static DingtalkChatbotClient client = new DingtalkChatbotClient();
-    public static String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=b9a9053ce65240db150bec9c805ad516c65dec75cda8ea962646df12cf9fa5a2";
+    public static String WEBHOOK_TOKEN = "";
 
     public static void dingding(String text,String [] phones) throws Exception{
 
@@ -31,7 +31,7 @@ public class demo {
         SendResult result = client.send(WEBHOOK_TOKEN, textMessage);
     }
     public  static  void main(String [] arrgs) {
-        String phones1[] = {"17835059864"};
+        String phones1[] = {"xxxx"};
         try {
             dingding("美好的一天,因为你有你",phones1);
         }catch (Exception e){

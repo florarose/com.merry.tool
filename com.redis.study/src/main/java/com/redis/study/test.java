@@ -9,7 +9,6 @@ public class test {
 
 
     public static void main(String[] args) {
-//        Jedis jedis = new Jedis("47.100.2.226", 6379);
         Jedis jedis = RedisConfig.getJedis();
         jedis.auth("123456");
        if(jedis.isConnected()){

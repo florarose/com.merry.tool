@@ -17,6 +17,7 @@
 ### 七、com.wx.push
   + 微信推送
 ### 八、com.wx.security
+  + 验证图片，文字，音频内容是否合法
   + 微信解密，用户信息获取后后端解密
 ### 九、springboot-mongdb
   + 整合mongdb，初步使用

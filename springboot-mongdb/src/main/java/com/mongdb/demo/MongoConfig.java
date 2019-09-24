@@ -17,7 +17,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories
 public class MongoConfig extends AbstractMongoConfiguration {
 
-    private String mongoHost = "47.111.160.211";
+    private String mongoHost = "127.0.0.1";
     private int mongoPort = 27017;
     private String dbName = "snow";
 
