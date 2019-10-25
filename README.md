@@ -23,3 +23,7 @@
   + 整合mongdb，初步使用
 ### 十、Springboot-Json
   + Springboot返回值的处理，包括各种类型，以及想要返回自己固定的个别属性
+### 十、tool-QRcode
+  + 二维码生成
+### 十、verification_code
+  + 动态验证码

@@ -22,6 +22,8 @@
         <module>Design_pattern</module>
         <module>Springboot-enmu</module>
         <module>com.java.hashMap.1.7</module>
+        <module>tool-QRcode</module>
+        <module>verification_code</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
