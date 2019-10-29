@@ -24,6 +24,7 @@
         <module>com.java.hashMap.1.7</module>
         <module>tool-QRcode</module>
         <module>verification_code</module>
+        <module>SpringBoot-Liquibase</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

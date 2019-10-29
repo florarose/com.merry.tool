@@ -6,15 +6,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class hashMapDemo {
 
+    private static void map1(){
+         Map<String,Object> map = new HashMap<>();
+         map.put("A","111");
+
+    }
+
     public static void main(String[] args) {
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("dd",333);
-//        int x=  Integer.MAX_VALUE;
-//        System.out.println(x);
-
-
         List<String> list = new ArrayList<>();
         list.add("yu");
         list.add("wang");
