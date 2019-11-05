@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.thread.mapper.TScheduledTaskMapper">
+    <resultMap id="BaseResultMap" type="com.study.thread.model.TScheduledTask">
+        <id column="id"  property="id"/>
+        <result column="status_name"  property="statusName"/>
+        <result column="status_cron" property="statusCron"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <select id="selectOneTask" resultMap="BaseResultMap" >
+        select * from t_scheduled_task
+        where status = 0
+        limit 1
+    </select>
+    <select id="selectManyTask" resultMap="BaseResultMap" >
+        select * from t_scheduled_task
+        where status = 0
+        limit 1
+    </select>
+</mapper>

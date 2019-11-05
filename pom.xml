@@ -26,6 +26,7 @@
         <module>verification_code</module>
         <module>SpringBoot-Liquibase</module>
         <module>SpringBoot-RabbitMq</module>
+        <module>SpringBoot-Thread</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

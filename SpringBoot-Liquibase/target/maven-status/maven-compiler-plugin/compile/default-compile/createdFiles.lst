@@ -1,6 +1,0 @@
-com\liquibase\demo\service\UserService.class
-com\liquibase\demo\mapper\UserMapper.class
-com\liquibase\demo\config\SpringLiquibaseConfig.class
-com\liquibase\demo\LiquibaseApplication.class
-com\liquibase\demo\service\impl\UserServiceImpl.class
-com\liquibase\demo\model\User.class
