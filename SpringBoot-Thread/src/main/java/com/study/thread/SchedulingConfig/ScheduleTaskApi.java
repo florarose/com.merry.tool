@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
@@ -30,7 +31,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @date 2019/11/4 11:01
  */
      //1.主要用于标记配置类，兼备Component的效果。
-  @Component
+ @Component
 public class ScheduleTaskApi  {
 
 
@@ -53,18 +54,10 @@ public class ScheduleTaskApi  {
      */
     public ScheduledFuture configureTasks(String cronss,int i) {
 
-        ScheduledFuture future= taskScheduler.schedule(
+        ScheduledFuture future=taskScheduler.schedule(
                 //1.添加任务内容(Runnable)
                 () -> {
-                    System.out.println("刷新 " + LocalDateTime.now().toLocalTime()+"---------"+i);
-                    System.out.println("线程 " + Thread.currentThread().getName()+"---------"+i);
-                    try {
-                        Thread.sleep(800);
-                    }catch (InterruptedException e){
-                        e.printStackTrace();
-                    }
-                    tScheduledTaskServiceImpl.updateTaskSchedule(i);
-                      System.out.println("执行动态定时任务: " + LocalDateTime.now().toLocalTime()+"---------"+i);
+                    sout(i);
                 },
                 //2.设置执行周期(Trigger)
                 triggerContext -> {
@@ -78,17 +71,20 @@ public class ScheduleTaskApi  {
                         // Omitted Code ..
                     }
                     //2.3 返回执行周期(Date)
-                    if(new CronTrigger(cron).nextExecutionTime(triggerContext).before(new Date())){
-
-                    }
+//                    if(new CronTrigger(cron).nextExecutionTime(triggerContext).before(new Date())){
+//
+//                    }
+                    System.out.println("ScheduledExecutionTime"+triggerContext.lastScheduledExecutionTime());
+                    System.out.println("CompletionTime"+triggerContext.lastCompletionTime());
                     return new CronTrigger(cron).nextExecutionTime(triggerContext);
                 }
         );
         System.out.println("-------------");
         return future;
     }
-
-    public static void main(String[] args) {
-
-    }
+   public void sout(int i){
+       System.out.println("刷新 " + LocalDateTime.now().toLocalTime()+"---------"+i);
+       System.out.println("线程 " + Thread.currentThread().getName()+"---------"+i);
+       System.out.println("执行动态定时任务: " + LocalDateTime.now().toLocalTime()+"---------"+i);
+   }
 }

@@ -14,7 +14,7 @@ import java.util.Date;
  * @version 1.0
  * @date 2019/11/4 17:19
  */
-@Component
+//@Component
 public class DynamicScheduledTask implements SchedulingConfigurer {
 
     // 定时器执行频率，默认隔10s执行一次

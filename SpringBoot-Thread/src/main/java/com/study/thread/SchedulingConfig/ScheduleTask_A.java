@@ -8,6 +8,7 @@ import com.study.thread.yanshi.RingBufferWheel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDateTime;
@@ -24,7 +25,7 @@ import java.util.concurrent.ScheduledFuture;
  * @version 1.0
  * @date 2019/11/4 13:44
  */
-@Configuration
+//@Configuration
 @Slf4j
 public class ScheduleTask_A {
 
@@ -38,7 +39,7 @@ public class ScheduleTask_A {
     private TScheduledTaskServiceImpl tScheduledTaskServiceImpl;
 
         //接受任务的返回结果
-    private ScheduledFuture<?> future;
+    private ScheduledFuture future;
 
     /**
      * 、静态：基于注解
@@ -56,26 +57,26 @@ public class ScheduleTask_A {
      *
      *
      */
-    //3.添加定时任务
-    @Scheduled(cron = "0/5 * * * * ?")
-    //或直接指定时间间隔，例如：5秒
-    //@Scheduled(fixedRate=5000)
-    private void configureTasks() throws Exception {
-        TScheduledTask tScheduledTask = tScheduledTaskService.selectOneTask();
-        if(null != tScheduledTask){
-            future= scheduleTaskApi.configureTasks(tScheduledTask.getStatusCron(),tScheduledTask.getId());
-            if(null == future){
-                System.out.println("任务启动失败");
-            }else {
-                boolean cancle = future.cancel(true);
-                if(cancle){
-                    System.out.println("停止该定时任务");
-                }
-                System.out.println(future);
-            }
-        }
-        System.err.println("执行静态定时任务时间: " + LocalDateTime.now());
-    }
+//    //3.添加定时任务
+//    @Scheduled(cron = "0/5 * * * * ?")
+//
+//    //或直接指定时间间隔，例如：5秒
+//    @Async
+//    //@Scheduled(fixedRate=5000)
+//    public void configureTasks() throws Exception {
+//        List<TScheduledTask> tScheduledTasks = tScheduledTaskService.selectManyTask();
+//        for(TScheduledTask tScheduledTask : tScheduledTasks){
+//            System.out.println("哈哈哈，进来了");
+//            if(null != tScheduledTask){
+//                future= scheduleTaskApi.configureTasks(tScheduledTask.getStatusCron(),tScheduledTask.getId());
+//                if(null == future){
+//                    System.out.println("任务启动失败");
+//                }else {
+//                    System.out.println(future.get());
+//                }
+//            }
+//        }
+//    }
     //3.添加定时任务
 //    @Scheduled(cron = "0/5 * * * * ?")
 //    //或直接指定时间间隔，例如：5秒

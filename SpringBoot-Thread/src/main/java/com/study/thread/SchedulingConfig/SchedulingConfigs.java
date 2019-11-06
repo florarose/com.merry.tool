@@ -14,8 +14,8 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  * @date 2019/11/5 15:31
  */
 @Slf4j
-@Configuration
-@EnableScheduling
+//@Configuration
+//@EnableScheduling
 public class SchedulingConfigs  implements SchedulingConfigurer {
 
     @Override
@@ -23,7 +23,7 @@ public class SchedulingConfigs  implements SchedulingConfigurer {
         scheduledTaskRegistrar.setTaskScheduler(taskScheduler());
     }
 
-    @Bean(destroyMethod = "shutdown")
+//    @Bean(destroyMethod = "shutdown")
     public ThreadPoolTaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
         scheduler.setPoolSize(5);

@@ -20,7 +20,7 @@ import java.util.concurrent.Executor;
  */
 
 //@Configuration
-@EnableAsync
+//@EnableAsync
 public class ScheduleConfi implements SchedulingConfigurer, AsyncConfigurer {
 
     /**

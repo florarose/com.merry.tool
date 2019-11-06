@@ -28,9 +28,9 @@ public class TScheduledTaskServiceImpl extends ServiceImpl<TScheduledTaskMapper,
     }
 
     @Override
-    public void updateTaskSchedule(int id) {
+    public void updateTaskSchedule(int id,int status) {
         TScheduledTask scheduleTask = tScheduledTaskMapper.selectById(id);
-        scheduleTask.setStatus(1);
+        scheduleTask.setStatus(status);
         tScheduledTaskMapper.updateById(scheduleTask);
     }
 }

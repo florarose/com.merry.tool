@@ -17,6 +17,5 @@
     <select id="selectManyTask" resultMap="BaseResultMap" >
         select * from t_scheduled_task
         where status = 0
-        limit 1
     </select>
 </mapper>

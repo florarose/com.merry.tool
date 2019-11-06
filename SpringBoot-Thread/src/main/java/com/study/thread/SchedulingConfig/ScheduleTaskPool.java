@@ -74,7 +74,7 @@ public class ScheduleTaskPool implements SchedulingConfigurer {
                     }
                   if(null != tScheduledTask){
                       System.out.println("执行动态定时任务: " + LocalDateTime.now().toLocalTime());
-                      tScheduledTaskServiceImpl.updateTaskSchedule(tScheduledTask.getId());
+//                      tScheduledTaskServiceImpl.updateTaskSchedule(tScheduledTask.getId());
                   }else {
                       System.out.println("再查找一个新的");
                       tScheduledTask= tScheduledTaskService.selectOneTask();
@@ -110,7 +110,7 @@ public class ScheduleTaskPool implements SchedulingConfigurer {
 
         System.out.println("-------------");
     }
-    @Bean
+//    @Bean
     public TaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
         taskScheduler.setPoolSize(10);

@@ -11,5 +11,5 @@ public interface TScheduledTaskService extends IService<TScheduledTask> {
 
     String selectOneTask();
 
-    void updateTaskSchedule(int id);
+    void updateTaskSchedule(int id,int status);
 }
