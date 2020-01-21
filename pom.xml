@@ -29,6 +29,7 @@
         <module>SpringBoot-timer</module>
         <module>SpringBoot-Quartz</module>
         <module>Study_Thread</module>
+        <module>Study_ReentrantLock</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

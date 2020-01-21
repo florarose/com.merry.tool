@@ -21,7 +21,6 @@ public class mapDemo2 {
             System.out.println(name+"--------------"+map.get(name));
         });
     }
-
     /**
      * 二、entrySet  遍历方式 ，容量较大的使用推荐此方法
      * @param map
@@ -35,9 +34,7 @@ public class mapDemo2 {
         map.entrySet().forEach((key)->{
             System.out.println(key.getKey()+"-------------"+key.getValue());
         });
-
     }
-
     /**
      * 三、Iterator遍历方式
      *     需要使用移出功能，尽量用此方法
@@ -58,7 +55,6 @@ public class mapDemo2 {
             System.out.println(key+"--------------"+value);
         }
     }
-
     /**
      * 四、Values 遍历方式
      *    只能获取value值
@@ -74,7 +70,6 @@ public class mapDemo2 {
             System.out.println("value --------" +name);
         });
     }
-
     /**
      * lambda 遍历方式
      * @param map
@@ -84,7 +79,6 @@ public class mapDemo2 {
             System.out.println(key + "  value: " + value );
         });
     }
-
     public static void main(String[] args) {
         Map<String,Object> map = new HashMap<>();
         map.put("A","测试1");
