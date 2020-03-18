@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: SpringBoot-Maven-Plugin
+Implementation-Version: 2.2.5.RELEASE
+Start-Class: com.PluginApplication
+Spring-Boot-Classes: WEB-INF/classes/
+Spring-Boot-Lib: WEB-INF/lib/
+Build-Jdk-Spec: 1.8
+Spring-Boot-Version: 2.2.5.RELEASE
+Created-By: Maven Archiver 3.4.0
+Main-Class: org.springframework.boot.loader.WarLauncher
+
