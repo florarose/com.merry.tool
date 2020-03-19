@@ -104,7 +104,7 @@ private static ObjectConfig config = new ObjectConfig("cn-sh2", "ufileos.com");
         InputStream is = new ByteArrayInputStream(new byte[]{0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07});
         // 如果上传File，则文件的MimeType可以使用MimeTypeUtil.getMimeType(File)来获取，MimeTypeUtil可能支持的type类型不全，用户可以按需自行填写
         File file = new File("C:\\Users\\Merry\\Desktop\\Imags.MOV");
-        String keyName = "85534a79-e5da-4518-b1e8-687b12effb0f/"+file.getName();
+        String keyName = "111/"+file.getName();
         String bucketName = "xxx";
         try {
             putFileAsync(file, "xxx", keyName, bucketName);
