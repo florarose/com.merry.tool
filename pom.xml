@@ -30,6 +30,9 @@
         <module>SpringBoot-Quartz</module>
         <module>Study_Thread</module>
         <module>Study_ReentrantLock</module>
+        <module>SpringBoot-AutoConfigure-Demo</module>
+        <module>com.vedio.demo</module>
+        <module>SpringBoot-Maven-Plugin</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

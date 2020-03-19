@@ -116,7 +116,7 @@ public final class ArrayQueue<T> {
     }
 
 
-    /**
+    /**0
      * 判断队列是否为空
      * @return
      */
