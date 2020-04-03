@@ -1,5 +1,7 @@
 package com.java.thread.executor;
 
+import sun.plugin2.jvm.RemoteJVMLauncher;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,9 +29,9 @@ public class ExecutorDemo {
 //        executorService.submit(()->{
 //
 //        });
-        callables.add(() -> {
-            return null;
-        });
+//        callables.add(() -> {
+//            return null;
+//        });
         try {
             List<Future<String>> futures = executorService.invokeAll(callables);
             for(Future<String> future : futures){

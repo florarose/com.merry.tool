@@ -156,14 +156,84 @@ public class List {
         }
 
     }
+    public SinglyListNode middleNode(SinglyListNode head) {
+
+        int length = 0;
+        int middleLength  = 0;
+        SinglyListNode node = head;
+        while(null != node){
+            length++;
+            node = node.next;
+        }
+        middleLength = length/2+1;
+        int lengths =1 ;
+        //从头节点开始
+        SinglyListNode temp = head;
+        //如果结点不为空，判断该节点的索引是否和要求的索引一致。相同则返回，不同继续；
+        while (temp != null) {
+            if(lengths==middleLength){
+                return temp;
+            }
+            lengths++;
+            temp = temp.next;
+        }
+        return null;
+    }
+    public  int addNode(SinglyListNode node1,SinglyListNode node2) {
+
+        int i=0;
+        int  unit = 0;
+        int unit10  = 0;
+        int unit100 = 0;
+        int yu = 0;
+        while(null != node1 && null != node2){
+            if(i==0){
+                unit= node1.val+node2.val;
+                yu = unit/10;
+                unit = unit%10;
+            }else if(i==1){
+                unit10= node1.val+node2.val+yu;
+                yu = unit10/10;
+                unit10 = (unit10%10)*10;
+            }else if(i==1){
+                unit100= node1.val+node2.val+yu;
+                yu = unit100/10;
+                unit100 = (unit100%10)*100;
+            }
+            node1 =node1.next;
+            node2 = node2.next;
+            i++;
+        }
+        return unit+unit10+unit100;
+    }
     public static void main(String[] args) {
         List list = new List();
+        List list2 = new List();
         list.addAtTail(2);
-        list.addAtHead(3);
-        list.addAtIndex(1,4);
-        list.deleteAtIndex(0);
-        System.out.println("222");
-       System.out.println(" 获取链表的长度 list.linkListLength() : " +list.linkListLength());
-        System.out.println(" 获取链表的某个元素 list.get(1) : " + list.get(1));
+        list.addAtTail(4);
+        list.addAtTail(3);
+        list2.addAtTail(5);
+        list2.addAtTail(6);
+        list2.addAtTail(3);
+        List list3 =new List();
+        SinglyListNode singlyListNode = new SinglyListNode(1);
+        for(SinglyListNode s=singlyListNode;s != null;){
+            singlyListNode=null;
+                 singlyListNode= new SinglyListNode(5);
+                 s.next = singlyListNode;
+                 System.out.println(singlyListNode.next);
+                 s=singlyListNode.next;
+        }
+        SinglyListNode singlyListNode2 = new SinglyListNode(2);
+        list3.addNode(singlyListNode,singlyListNode2);
+        System.out.println("list:"+list3.addNode(singlyListNode,singlyListNode2));
+        System.out.println("list:"+list3.get(0));
+//        list.addAtIndex(1,4);
+//        list.deleteAtIndex(0);
+//        System.out.println(head.val);
+//        System.out.println(list.middleNode(head).val);
+//        System.out.println("222");
+//       System.out.println(" 获取链表的长度 list.linkListLength() : " +list.linkListLength());
+//        System.out.println(" 获取链表的某个元素 list.get(1) : " + list.get(1));
     }
 }

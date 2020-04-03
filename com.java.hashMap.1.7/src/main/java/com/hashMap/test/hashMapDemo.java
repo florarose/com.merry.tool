@@ -13,6 +13,7 @@ public class hashMapDemo {
     private static void map1(){
         ConcurrentHashMap<String,Object> map = new ConcurrentHashMap<>();
          map.put("A","111");
+         Map<String,Object> maps = new HashMap<>();
     }
     static final int tableSizeFor(int cap) {
 

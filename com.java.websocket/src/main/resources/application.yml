@@ -1,0 +1,15 @@
+spring:
+  http:
+     encoding:
+       charset: UTF-8
+       enabled: true
+server:
+  port: 8080
+  context-path: /websocket
+  tomcat:
+    max-threads: 300
+    max-connections: 200
+    connection-timeout: 5000
+    max-http-post-size: 0
+
+

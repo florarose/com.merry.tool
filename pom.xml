@@ -33,6 +33,7 @@
         <module>SpringBoot-AutoConfigure-Demo</module>
         <module>com.vedio.demo</module>
         <module>SpringBoot-Maven-Plugin</module>
+        <module>com.java.websocket</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

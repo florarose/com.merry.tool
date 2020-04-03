@@ -44,7 +44,7 @@ public class Constants {
      * 请修改下面的公私钥
      */
     public static final ObjectAuthorization OBJECT_AUTHORIZER = new UfileObjectLocalAuthorization(
-            "xxx",
-            "xxx");
+            "",
+            "");
 
 }
