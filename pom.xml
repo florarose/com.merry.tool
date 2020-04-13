@@ -34,6 +34,7 @@
         <module>com.vedio.demo</module>
         <module>SpringBoot-Maven-Plugin</module>
         <module>com.java.websocket</module>
+        <module>springboot-docker</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

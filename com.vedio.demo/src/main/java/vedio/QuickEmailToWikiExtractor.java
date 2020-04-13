@@ -33,6 +33,7 @@ public class QuickEmailToWikiExtractor<E> {
 
     private Set<Callable<String>> callables = new HashSet<Callable<String>>();
 
+    //重写ThredTactory()方法
     ThreadFactory threadFactory = new ThreadFactory() {
         //  int i = 0;  用并发安全的包装类
         AtomicInteger atomicInteger = new AtomicInteger(1);
@@ -48,8 +49,8 @@ public class QuickEmailToWikiExtractor<E> {
 
     public QuickEmailToWikiExtractor(){
         blockingQueue = new LinkedBlockingQueue<E>(queueSize);
-        producerTheadPool = Executors.newFixedThreadPool(producerNum,threadFactory);
-        consumerTheadPool = Executors.newFixedThreadPool(consumerNum,threadFactory);
+        producerTheadPool = new ThreadPoolExecutor(producerNum,producerNum,0L,TimeUnit.MILLISECONDS, (BlockingQueue<Runnable>) blockingQueue,threadFactory);
+        consumerTheadPool = new ThreadPoolExecutor(consumerNum,consumerNum,0L,TimeUnit.MILLISECONDS, (BlockingQueue<Runnable>) blockingQueue,threadFactory);
     }
 
     public QuickEmailToWikiExtractor(int queueSize, int producerNum, int consumerNum){
@@ -64,7 +65,21 @@ public class QuickEmailToWikiExtractor<E> {
         Producer<E> producer = new Producer<E>(this.blockingQueue, ele);
         producerTheadPool.execute(producer);
     }
-
+    public void shutProducerThreadPool(){
+        producerTheadPool.shutdown();
+        if(! producerTheadPool.isTerminated()){
+            try {
+                if (!producerTheadPool.awaitTermination(1, TimeUnit.SECONDS)) {
+                    producerTheadPool.shutdownNow();
+                    System.out.println("线程池没有关闭");
+                }
+            } catch (InterruptedException e) {
+                //awaitTermination方法被中断的时候也中止线程池中全部的线程的执行。
+                e.printStackTrace();
+                producerTheadPool.shutdownNow();
+            }
+        }
+    }
     //执行消费过程
     public void consumeEleAsync() {
         if(!checkSuccess()){
@@ -95,7 +110,7 @@ public class QuickEmailToWikiExtractor<E> {
                     }
                 }
             }).start();
-    }
+}
 
     //判空检查
     private boolean checkSuccess(){
