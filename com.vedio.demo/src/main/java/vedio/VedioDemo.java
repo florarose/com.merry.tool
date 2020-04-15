@@ -253,7 +253,7 @@ private static ObjectConfig config = new ObjectConfig("cn-sh2", "ufileos.com");
      * 如果线程池任务正常完成，都为false
      *调用完shutdownNow和shuwdown方法后，并不代表线程池已经完成关闭操作，它只是异步的通知线程池进行关闭处理。如果要同步等待线程池彻底关闭后才继续往下执行，需要调用awaitTermination方法进行同步等待。
      *
-     *线程池使用一个AtomicInteger的ctl变量将 workerCount（工作线程数量）和 runState（运行状态）两个字段压缩在一起
+     *线程池使用一个AtomicInteger的ctl变量将 workerCount（工作线程数量）和 runState（运行状态）两个字段压缩在一起,前三位表示状态，后29为表示数量
      * 在 Queue 中 poll()和 remove()有什么区别
      * 相同点：都是返回第一个元素，并在队列中删除返回的对象。
      * 不同点：如果没有元素 poll()会返回 null，而 remove()会直接抛出 NoSuchElementException 异常。

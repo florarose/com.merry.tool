@@ -96,6 +96,12 @@ public class VideoUtil {
         System.out.println(0 << (Integer.SIZE - 3));
         System.out.println(1 << (Integer.SIZE - 3));
       ExecutorService producerTheadPool = Executors.newFixedThreadPool(1);
+      int a = 5;
+      int b = 536870911;
+        System.out.println(Integer.toBinaryString(a));
+        System.out.println(2 & -536870912);
+        System.out.println(b&a);
+        System.out.println(5&536870911);
       producerTheadPool.execute(null);
     }
 

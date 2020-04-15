@@ -82,7 +82,7 @@ public class CustomizeExecutorPool {
         this.workQueue = workQueue;
         this.notify = notify;
 
-        workers = new ConcurrentHashSet<>();
+        workers = new ConcurrentHashSet<Worker>();
     }
 
 
