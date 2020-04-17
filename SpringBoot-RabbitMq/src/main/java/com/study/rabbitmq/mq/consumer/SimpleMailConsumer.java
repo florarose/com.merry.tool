@@ -27,6 +27,12 @@ public class SimpleMailConsumer {
     @Autowired
     private MailUtil mailUtil;
 
+    /**
+     *  1 保证消费的幂等性  2 发送邮件  3  更新消息状态 ，手动ack
+     * @param message
+     * @param channel
+     * @throws IOException
+     */
     @RabbitListener(queues = RabbitConfig.MAIL_QUEUE_NAME)
     public void consume(Message message, Channel channel) throws IOException {
         Mail mail = MessageHelper.msgToObj(message, Mail.class);
@@ -46,6 +52,8 @@ public class SimpleMailConsumer {
         boolean success = mailUtil.send(mail);
         if (success) {
             msgLogService.updateStatus(msgId, Constant.MsgLogStatus.CONSUMED_SUCCESS);
+            //在手动ack模式下, 消费端必须进行手动确认(ack), 否则消息会一直保存在队列中 ;;; 虽然消息确实被消费了, 但是由于是手动确认模式, 而最后又没手动确认, 所以, 消息仍被rabbitmq保存
+            // 手动ack能够保证消息一定被消费, 但一定要记得basicAck
             channel.basicAck(tag, false);// 消费确认
         } else {
             channel.basicNack(tag, false, true);

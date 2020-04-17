@@ -5,11 +5,7 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 public class LoginLog implements Serializable {
 
     private static final long serialVersionUID = 9035584359424322830L;
@@ -20,6 +16,9 @@ public class LoginLog implements Serializable {
     private String description;
     private Date createTime;
     private Date updateTime;
-    private String msgId;// 消息id
+    /**
+     * 消息id
+     */
+    private String msgId;
 
 }

@@ -1,4 +1,4 @@
-package com.study.rabbitmq.util;
+package com.java.common.tools;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

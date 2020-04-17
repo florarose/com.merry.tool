@@ -1,4 +1,4 @@
-package com.study.rabbitmq.util;
+package com.java.common.Properties;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

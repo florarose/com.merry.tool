@@ -1,6 +1,5 @@
 package com.study.rabbitmq.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,10 +29,7 @@ public class JedisConfig {
         jedisPoolConfig.setMaxIdle(jedisPoolMaxIdle);
         jedisPoolConfig.setMaxWaitMillis(jedisPoolMaxWait);
         jedisPoolConfig.setMinIdle(jedisPoolMinIdle);
-
         JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
-
         return jedisPool;
     }
-
 }

@@ -28,6 +28,7 @@ public class ResendMsg {
     private static final int MAX_TRY_COUNT = 3;
 
     /**
+     * 每一条消息都和exchange routingKey绑定, 所有消息重投共用这一个定时任务即可
      * 每30s拉取投递失败的消息, 重新投递
      */
     @Scheduled(cron = "0/30 * * * * ?")

@@ -2,11 +2,7 @@ package com.study.rabbitmq.pojo;
 
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 public class User {
 
     private Integer id;

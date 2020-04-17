@@ -1,6 +1,6 @@
-package com.study.rabbitmq.util;
+package com.java.common.tools;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.regex.Pattern;
 

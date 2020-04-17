@@ -87,10 +87,10 @@ private static ObjectConfig config = new ObjectConfig("cn-sh2", "ufileos.com");
                         LinkedBlockingQueue<String> progressQueue = new LinkedBlockingQueue();
                         JLog.D(TAG, String.format("[progress] = %d%% - [%d/%d]", (int) (bytesWritten * 1.f / contentLength * 100), bytesWritten, contentLength));
                         progressQueue.offer((int) (bytesWritten * 1.f / contentLength * 100)+"'");
-                        wrapperProgressMap.put(id, progressQueue);
+//                        wrapperProgressMap.put(id, progressQueue);
                         try {
-
-                                    System.out.println("111'"+wrapperProgressMap.get(id).take());
+//
+//                                    System.out.println("111'"+wrapperProgressMap.get(id).take());
                         }catch (Exception e){
                             e.printStackTrace();
                         }
