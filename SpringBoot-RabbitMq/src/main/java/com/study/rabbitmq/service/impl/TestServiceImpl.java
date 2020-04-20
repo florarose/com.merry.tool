@@ -43,6 +43,7 @@ public class TestServiceImpl implements TestService {
         msgLogMapper.insert(msgLog);// 消息入库
 
         CorrelationData correlationData = new CorrelationData(msgId);
+        // 发送消息到指定的交换器，指定的路由键，设置消息 ID
         rabbitTemplate.convertAndSend(RabbitConfig.MAIL_EXCHANGE_NAME, RabbitConfig.MAIL_ROUTING_KEY_NAME, MessageHelper.objToMsg(mail), correlationData);// 发送消息
 
         return ServerResponse.success(ResponseCode.MAIL_SEND_SUCCESS.getMsg());

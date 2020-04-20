@@ -74,13 +74,13 @@ public class RabbitConfig {
     @Bean
     public Queue logUserQueue() {
         return new Queue(LOGIN_LOG_QUEUE_NAME, true);
-    }
-
+    }// true表示持久化该队列
+    //声明交互器
     @Bean
     public DirectExchange logUserExchange() {
         return new DirectExchange(LOGIN_LOG_EXCHANGE_NAME, true, false);
     }
-
+    //绑定
     @Bean
     public Binding logUserBinding() {
         return BindingBuilder.bind(logUserQueue()).to(logUserExchange()).with(LOGIN_LOG_ROUTING_KEY_NAME);
