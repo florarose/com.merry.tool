@@ -21,6 +21,9 @@ public class ApiIdempotentInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+
+        //判断是不是springMVC 的请求
+        //如果是SpringMVC请求
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }

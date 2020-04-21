@@ -36,6 +36,7 @@
         <module>com.java.websocket</module>
         <module>springboot-docker</module>
         <module>com.java.proxy</module>
+        <module>SpringBoot-shiro</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
