@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.rabbitmq.mapper.GoodsMapper" >
+    <resultMap id="BaseResultMap" type="com.study.rabbitmq.pojo.Goods" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, name, content,type
+    </sql>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM goods
+    </select>
+
+    <select id="selectGoods" parameterType="int" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM goods
+        WHERE id = #{id}
+    </select>
+    <insert id="insert" parameterType="com.study.rabbitmq.pojo.Goods">
+        INSERT INTO user(name, content,type) VALUES (#{name}, #{content},${type})
+    </insert>
+
+    <update id="update" parameterType="com.study.rabbitmq.pojo.Goods">
+        UPDATE user SET
+        <if test="name != null">
+            name = #{name},
+        </if>
+        <if test="content != null">
+            content = #{content}
+        </if>
+        WHERE id = #{id}
+    </update>
+</mapper>

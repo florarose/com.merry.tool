@@ -3,7 +3,9 @@ package test.controller.test;
 
 import com.study.rabbitmq.RabbitmqApplication;
 import com.study.rabbitmq.config.RabbitConfig;
+import com.study.rabbitmq.pojo.Goods;
 import com.study.rabbitmq.pojo.User;
+import com.study.rabbitmq.service.GoodsService;
 import com.study.rabbitmq.service.UserService;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
@@ -27,6 +29,10 @@ public class ServiceTest {
 
     @Autowired
     private RabbitConfig rabbitConfig;
+
+    @Autowired
+    private GoodsService goodsService;
+
     @Test
     public void usertest(){
         User user = new User();
@@ -39,5 +45,17 @@ public class ServiceTest {
         RabbitTemplate rabbitTemplate = rabbitConfig.rabbitTemplate();
         System.out.println(rabbitTemplate);
     }
-
+    @Test
+    public void listAll(){
+     goodsService.getAll();
+        System.out.println(goodsService.getAll());
+    }
+    @Test
+    public void insertGoods(){
+        Goods goods = new Goods();
+        goods.setType(1);
+        goods.setContent("男装");
+        goods.setName("清凉男装");
+        goodsService.insertGoods(goods);
+    }
 }

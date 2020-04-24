@@ -1,9 +1,11 @@
-package com.study.rabbitmq.config;
+package com.redis.study.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -13,7 +15,6 @@ import redis.clients.jedis.JedisPoolConfig;
  * @date 2019/11/1 10:43
  */
 @Configuration
-@ConfigurationProperties(prefix = "spring.redis")
 public class JedisConfig {
 
     @Value("${spring.redis.host}")

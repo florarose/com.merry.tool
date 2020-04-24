@@ -37,6 +37,8 @@
         <module>springboot-docker</module>
         <module>com.java.proxy</module>
         <module>SpringBoot-shiro</module>
+        <module>SpringBoot-ErrorDemo1</module>
+        <module>SpringBoot-redis</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

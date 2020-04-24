@@ -1,12 +1,10 @@
-package com.study.rabbitmq.util;
+package com.redis.study.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-
-import java.util.List;
 
 @Component
 @Slf4j
@@ -170,38 +168,6 @@ public class JedisUtil {
             return jedis.ttl(key);
         } catch (Exception e) {
             log.error("ttl key:{} error", key, e);
-            return null;
-        } finally {
-            close(jedis);
-        }
-    }
-
-    /**
-     * 存入list
-     * @param list
-     * @param object
-     * @return
-     */
-    public Long lpush(String list,String object){
-        Jedis jedis = null;
-        try {
-            jedis = getJedis();
-            return jedis.lpush(list,object);
-        } catch (Exception e) {
-            log.error("ttl key:{} error", list, e);
-            return null;
-        } finally {
-            close(jedis);
-        }
-    }
-
-    public List<String> lrange(String list, long end){
-        Jedis jedis = null;
-        try {
-            jedis = getJedis();
-            return jedis.lrange(list,0,end);
-        } catch (Exception e) {
-            log.error("ttl key:{} error", list, e);
             return null;
         } finally {
             close(jedis);
