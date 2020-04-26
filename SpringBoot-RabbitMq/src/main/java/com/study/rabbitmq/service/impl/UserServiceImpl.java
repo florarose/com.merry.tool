@@ -12,6 +12,7 @@ import com.study.rabbitmq.pojo.LoginLog;
 import com.study.rabbitmq.pojo.MsgLog;
 import com.study.rabbitmq.pojo.User;
 import com.study.rabbitmq.service.UserService;
+import com.study.rabbitmq.util.DateUtil;
 import com.study.rabbitmq.util.JedisUtil;
 import com.study.rabbitmq.util.JodaTimeUtil;
 import com.study.rabbitmq.util.RandomUtil;
@@ -22,6 +23,7 @@ import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +43,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private JedisUtil jedisUtil;
 
+
+    private static final LocalDate beginDate=LocalDate.of(2018,1,1);
     @Override
     public List<User> getAll() {
         return userMapper.selectAll();
@@ -84,7 +88,13 @@ public class UserServiceImpl implements UserService {
 
         saveAndSendMsg(user);
 
+        jedisUtil.setBit(String.valueOf(user.getId()), DateUtil.getDateDuration(beginDate,LocalDate.now()),true);
         return ServerResponse.success();
+    }
+
+    @Override
+    public boolean getUserByLogin(int id, LocalDate date) {
+        return jedisUtil.getBit(String.valueOf(id),DateUtil.getDateDuration(beginDate,LocalDate.now()));
     }
 
     /**

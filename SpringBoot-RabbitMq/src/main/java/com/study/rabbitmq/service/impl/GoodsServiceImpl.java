@@ -1,5 +1,6 @@
 package com.study.rabbitmq.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.study.rabbitmq.mapper.GoodsMapper;
 import com.study.rabbitmq.pojo.Goods;
@@ -27,7 +28,6 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public Goods searchArticleById(Integer id){
-
         String object = jedisUtil.get(String.valueOf(id));
         if(object != null){// 缓存查询到了结果
             Goods goods = JsonUtil.strToObj(object,Goods.class);
@@ -51,6 +51,7 @@ public class GoodsServiceImpl implements GoodsService {
         List<String> stringList = jedisUtil.lrange("listRecord",100000);
         if(null != stringList && stringList.size() != 0){
             String jsonString =JsonUtil.objToStr(stringList);
+            System.out.println(jsonString);
             List<Goods> goodsList = JSONArray.parseArray(jsonString,Goods.class);
             return goodsList;
         }
@@ -68,7 +69,14 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public void updateGoods(Goods goods) {
-          goodsMapper.update(goods);
+        jedisUtil.del(String.valueOf(goods.getId()));
+        goodsMapper.update(goods);
+        try {
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        jedisUtil.del(String.valueOf(goods.getId()));
     }
 /**
      * 缓存方式

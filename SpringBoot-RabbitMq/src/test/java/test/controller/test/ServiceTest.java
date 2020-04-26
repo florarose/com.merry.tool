@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
+
 /**
  * @author liudongting
  * @date 2019/7/29 15:45
@@ -41,6 +43,13 @@ public class ServiceTest {
         userService.add(user);
     }
     @Test
+    public void userLogin(){
+        String username = "merry";
+        String password = "123456";
+        userService.login(username,password);
+        System.out.println(userService.getUserByLogin(4, LocalDate.now()));
+    }
+    @Test
     public void rabbitTest(){
         RabbitTemplate rabbitTemplate = rabbitConfig.rabbitTemplate();
         System.out.println(rabbitTemplate);
@@ -50,6 +59,22 @@ public class ServiceTest {
      goodsService.getAll();
         System.out.println(goodsService.getAll());
     }
+    @Test
+    public void updateGoods(){
+        new Thread().start();
+        Goods goods = new Goods();
+        goods.setId(1);
+        goods.setContent("测试一下0");
+        goodsService.updateGoods(goods);
+        new Thread().start();
+        goodsService.searchArticleById(1);
+    }
+    @Test
+    public void getGoodById(){
+        goodsService.searchArticleById(1);
+    }
+
+
     @Test
     public void insertGoods(){
         Goods goods = new Goods();

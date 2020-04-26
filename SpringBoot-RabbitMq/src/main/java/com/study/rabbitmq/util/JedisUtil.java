@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -214,4 +215,49 @@ public class JedisUtil {
         }
     }
 
+    /**
+     * 位图
+     * @param key
+     * @param date
+     * @param isLogin
+     * @return
+     */
+    public boolean setBit(String key, long date,boolean isLogin){
+        System.out.println("date"+date);
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            return jedis.setbit(key,date,isLogin);
+        } catch (Exception e) {
+            log.error("ttl key:{} error", key, e);
+            return false;
+        } finally {
+            close(jedis);
+        }
+    }
+    public boolean getBit(String key, long date){
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            return jedis.getbit(key,date);
+        } catch (Exception e) {
+            log.error("ttl key:{} error", key, e);
+            return false;
+        } finally {
+            close(jedis);
+        }
+    }
+
+    public Long getBitcount(String key, long start,long end){
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            return jedis.bitcount(key,start,end);
+        } catch (Exception e) {
+            log.error("ttl key:{} error", key, e);
+            return null;
+        } finally {
+            close(jedis);
+        }
+    }
 }
