@@ -38,7 +38,7 @@ public class ServiceTest {
     @Test
     public void usertest(){
         User user = new User();
-        user.setUsername("merry");
+        user.setUserName("merry");
         user.setPassword("123456");
         userService.add(user);
     }

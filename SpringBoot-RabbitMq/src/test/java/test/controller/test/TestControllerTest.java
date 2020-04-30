@@ -7,6 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TestControllerTest {
@@ -16,9 +19,11 @@ public class TestControllerTest {
 
     @Test
     public void testLogin() {
-        for (int i = 0; i < 100; i++) {
-            testRestTemplate.postForObject("/user/login?username={username}&password={password}", null, String.class, "wangzaiplus", "123456");
-        }
+//        for (int i = 0; i < 100; i++) {
+//            testRestTemplate.postForObject("/user/login?username={username}&password={password}", null, String.class, "wangzaiplus", "123456");
+//        }
+
+
     }
 
 }

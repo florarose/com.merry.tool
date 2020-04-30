@@ -25,7 +25,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -89,7 +91,11 @@ public class UserServiceImpl implements UserService {
         saveAndSendMsg(user);
 
         jedisUtil.setBit(String.valueOf(user.getId()), DateUtil.getDateDuration(beginDate,LocalDate.now()),true);
-        return ServerResponse.success();
+        Map<String,Object> map = new HashMap<>();
+        map.put("currentAuthority","admin");
+        map.put("status","ok");
+        map.put("type","account");
+        return ServerResponse.success(map);
     }
 
     @Override
@@ -103,12 +109,11 @@ public class UserServiceImpl implements UserService {
      */
     private void saveAndSendMsg(User user) {
         String msgId = RandomUtil.UUID32();
-
         LoginLog loginLog = new LoginLog();
         loginLog.setUserId(user.getId());
         loginLog.setType(Constant.LogType.LOGIN);
         Date date = new Date();
-        loginLog.setDescription(user.getUsername() + "在" + JodaTimeUtil.dateToStr(date) + "登录系统");
+        loginLog.setDescription(user.getUserName() + "在" + JodaTimeUtil.dateToStr(date) + "登录系统");
         loginLog.setCreateTime(date);
         loginLog.setUpdateTime(date);
         loginLog.setMsgId(msgId);

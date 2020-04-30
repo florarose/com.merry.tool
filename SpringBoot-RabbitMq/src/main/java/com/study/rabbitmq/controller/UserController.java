@@ -49,9 +49,9 @@ public class UserController {
         return "nice";
     }
 
-    @PostMapping("login")
-    public ServerResponse login(String username, String password) {
-        return userService.login(username, password);
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public ServerResponse login(@RequestBody User user) {
+        return userService.login(user.getUserName(), user.getPassword());
     }
 
 }

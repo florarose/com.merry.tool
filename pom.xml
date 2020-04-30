@@ -39,6 +39,7 @@
         <module>SpringBoot-shiro</module>
         <module>SpringBoot-ErrorDemo1</module>
         <module>SpringBoot-redis</module>
+        <module>com-java-nio</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
