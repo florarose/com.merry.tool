@@ -105,7 +105,20 @@
             <version>1.2.58</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.MiPush_SDK_Server_2_2_20</groupId>
+            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>MiPush_SDK_Server_2_2_20.jar</artifactId>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/MiPush_SDK_Server_2_2_20.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>json-simple-1.1.1</groupId>
+            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>json-simple-1.1.1.jar</artifactId>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/json-simple-1.1.1.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

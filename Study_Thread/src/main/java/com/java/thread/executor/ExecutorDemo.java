@@ -61,9 +61,9 @@ public class ExecutorDemo {
             }
         });
         //callable
-        Future future =  executorService.submit(() -> {
-            return null;
-        });
+//        Future future =  executorService.submit(() -> {
+//            return null;
+//        });
         executorService.shutdown();
     }
     public void executorScheduledThreadPool(){

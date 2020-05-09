@@ -1,0 +1,65 @@
+SpringBoot 自动注入Bean的流程
+   	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.imag.scratch.ScratchApplication.main(ScratchApplication.java:31)
+	
+	
+	@Controller
+@RequestMapping(path = "page")
+publicclass ErrorPageRest {
+
+@ResponseBody
+@GetMapping(path = "divide")
+public int divide(int sub) {
+        System.out.println("divide1");
+        return1000 / sub;
+        }
+}
+}
+在SpringBoot项目中，本身提供了一个默认的异常处理页面，当我们希望使用自定义的404,500等页面；
+ 有两种返回方式：
+    1、 是以html 页面的方式；
+	2、 以json的方式；
+BasicErrorController 专门用来处理异常，404,500等
+
+处理异常：
+	1、创建异常处理类
+  	   1、使用SpringBoot 自带   @RestControllerAdvice 或者 @ControllerAdvice +	@ResponseBody 注解 标记类;
+	   2、创建对应的异常方法，使用@ExceptionHandler(UnauthorizedException.class)注解标记方法。即可。
+    2 创建类，实现HandlerExceptionResolver接口，重写resolveException方法，自定义异常，匹配传入的异常，设置相应的返回即可。
+	  spring mvc 从容器中获取了处理异常的HandlerExceptionResolver，spring mvc提供三种异常处理器： DefaultHandlerExceptionResolver， ResponseStatusExceptionResolver， ExceptionHandlerExceptionResolver；
+	   当程序发生异常时，三个异常解析器默认可以解析指定的异常。DefaultHandlerExceptionResolver 处理比如方法不支持，如不支持post请求，参数类型不匹配等。
+	   
+   SpringBoot 处理404,500 异常：
+	 1、默认的是BasicErrorController，继承自AbstractErrorController：
+	    默认去项目的资源目录根据请求的状态码获取html文件返回，不符合我们的要求，所以我们可以自定义ErrorController，重写errorHtml和error方法，errorHtml 方法定义一下html即可，error方法，放回自己系统定义的json格式数据即可。
+	 2、通过SpringBoot的配置直接完成:
+			spring:
+				mvc:
+					throw-exception-if-no-handler-found: true
+				resources:
+					add-mappings: false
+			通俗的说就是在没有handle的时候直接作为异常抛出，这样我们的全局异常捕获器就能捕获到了，然后根据不同的状态码返回就行。add-mappings: false,因为静态资源是直接访问的，不需要控制器。
+		    如果系统只是接口服务,采用这种方式是可以的;
+			因为项目中使用swagger,暴露的api是动态生成的静态文件,如果采用这种方式，swagger也不能使用。
+		
+
+
+
+
