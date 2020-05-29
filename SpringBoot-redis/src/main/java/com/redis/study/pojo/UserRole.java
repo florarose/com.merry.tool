@@ -1,12 +1,9 @@
 package com.redis.study.pojo;
 
-import com.redis.study.base.BaseEntity;
+import com.easy.securityOauth2Credentials.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.List;
 
 /**
  * <p>
@@ -19,13 +16,13 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class User extends BaseEntity {
+public class UserRole extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    private String username;
+    private Long userId;
 
-    private String password;
+    private Long roleId;
 
-    private List<GrantedAuthority> authorities;
+
 }

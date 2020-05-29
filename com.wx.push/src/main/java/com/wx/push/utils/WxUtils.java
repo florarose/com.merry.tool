@@ -4,13 +4,16 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.wx.push.constant.WxConstants;
 import com.wx.push.entity.AccessToken;
+import com.wx.push.entity.Template;
 import com.wx.push.entity.UserList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WxUtils {
 
@@ -76,7 +79,36 @@ public class WxUtils {
         }
         return AccessTokenUtil.userList;
     }
-
+    /**
+     * 获取关注的用户列表
+     * @param token 调用接口凭证
+     * @param params 参数
+     * @return
+     */
+    public static UserList getUserLists(String token,String params){
+        String requestUrl = WxConstants.userlist_urls.replace("ACCESS_TOKEN",token);
+        //发起GET请求获取凭证
+        String url = HttpUtil.sendPost(requestUrl,params);
+        if(!"".equals(url)&&null != url){
+            JSONObject jsonObject = JSONObject.parseObject(url);
+            System.out.println(url);
+            if(null != jsonObject){
+                try {
+                    JSONArray json2 = JSONArray.parseArray(jsonObject.get("user_info_list").toString());
+                    AccessTokenUtil.userList.setData(json2);
+                    if (null != AccessTokenUtil.userList)
+                        logger.info("获取用户列表成功， token:{}", AccessTokenUtil.userList.getCount(), AccessTokenUtil.userList.getTotal());
+                    else{
+                        logger.error("获取用户列表失败 errcode:{} errmsg:{}", jsonObject.getInteger("errcode"), jsonObject.getString("errmsg"));
+                    }
+                }catch (Exception e) {
+                    logger.error("{异常}", e);
+                    logger.error("获取token失败 errcode:{} errmsg:{}", jsonObject.getInteger("errcode"), jsonObject.getString("errmsg"));
+                }
+            }
+        }
+        return AccessTokenUtil.userList;
+    }
     /**
      * 获取token的时间差
      * @param time 获取时间
@@ -113,21 +145,44 @@ public class WxUtils {
     /**
      * 全推送模板
      * @param openidList 全关注用户
-     * @param url 推送接口
      */
-    public static void push(List<String> openidList, String url,String access_token){
-        url ="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN" ;
+    public static void push(List<String> openidList, String access_token){
+       String url ="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN" ;
         url=  url.replace("ACCESS_TOKEN", access_token);
         for (int i = 0 ; i < openidList.size(); i ++){
             JSONObject json = new JSONObject();
+            JSONObject miniprogram =new JSONObject();
+            miniprogram.put("appid","");
+            miniprogram.put("pagepath","");
+            json.put("miniprogram", miniprogram);//接收者wxName
             json.put("touser", openidList.get(i));//接收者wxName
+            json.put("pagepath", "");//接收者wxName
             json.put("template_id", WxConstants.ce_template_id);//消息模板
             json.put("url", WxConstants.url);//填写url可查看详情
+            json.put("appid", "");//填写url可查看详情
+            JSONObject data = new JSONObject();
+            JSONObject data2 = new JSONObject();
+            JSONObject data3 = new JSONObject();
+            JSONObject data4 = new JSONObject();
+            LinkedHashMap<String,Object> map =new LinkedHashMap<String, Object>();
+            Template t = new Template();
+            t.setValue("完成了任务111");
+
+            map.put("first",t);
+            data.put("value","完成数学作业数学数学数学……");
+            data2.put("value","已经完成");
+            data3.put("value","2020 5:25 16:36");
+            data4.put("value","该任务已有多少人完成\n还有多少人未完成");
+            map.put("keyword1",data);
+            map.put("keyword2",data2);
+            map.put("keyword3",data3);
+            map.put("remark",data4);
+            json.put("data", map);//填写url可查看详情
             System.out.println(json.toString());
-            String js = HttpUtil.sendPost(url,null);
-            JSONObject jsonObject = JSONObject.parseObject(js);
-            logger.info("jsonObject",jsonObject);
-            System.out.println("jsonObject=="+jsonObject);
+            String js = HttpUtil.sendPost(url,json.toJSONString());
+            JSONObject jsonObjects = JSONObject.parseObject(js);
+            logger.info("jsonObject",jsonObjects);
+            System.out.println("jsonObject=="+jsonObjects);
         }
     }
 

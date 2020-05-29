@@ -1,12 +1,10 @@
 package com.redis.study.pojo;
 
-import com.redis.study.base.BaseEntity;
+import com.easy.securityOauth2Credentials.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
-
-import java.util.List;
 
 /**
  * <p>
@@ -19,13 +17,20 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class User extends BaseEntity {
+public class Permission extends BaseEntity implements GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
 
-    private String username;
+    private String url;
 
-    private String password;
+    private String name;
 
-    private List<GrantedAuthority> authorities;
+    private String description;
+
+    private Long pid;
+
+    @Override
+    public String getAuthority() {
+        return url;
+    }
 }

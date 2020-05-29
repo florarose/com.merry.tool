@@ -3,7 +3,7 @@ package com.wx.push.constant;
 public interface WxConstants {
 
     /**
-     * 爱照护
+     *
      */
     public static final  String APPID = "";
     public static final  String APPSECRET = "";
@@ -15,7 +15,10 @@ public interface WxConstants {
     public final static String send_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";
 
     //获得关注用户id
-    public final static String userlist_url = " ";
+    public final static String userlist_url = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&next_openid=NEXT_OPENID";
+
+    //获得关注用户id
+    public final static String userlist_urls = "https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=ACCESS_TOKEN";
 
     // 模板id
     public static final  String ce_template_id = "";

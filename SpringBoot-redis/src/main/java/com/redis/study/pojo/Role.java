@@ -4,9 +4,6 @@ import com.redis.study.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.List;
 
 /**
  * <p>
@@ -19,13 +16,9 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class User extends BaseEntity {
+public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    private String username;
-
-    private String password;
-
-    private List<GrantedAuthority> authorities;
+    private String name;
 }
