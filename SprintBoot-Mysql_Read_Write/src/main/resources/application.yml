@@ -1,0 +1,94 @@
+spring:
+  http:
+     encoding:
+       charset: UTF-8
+       enabled: true
+
+  mastersource:
+    url: jdbc:mysql://192.168.0.27:3306/dream_blog?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 12345678
+    driverClassName: com.mysql.jdbc.Driver
+  slavesource:
+    url: jdbc:mysql://192.168.0.27:3307/dream_blog?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 12345678
+    driverClassName: com.mysql.jdbc.Driver
+#  datasource:
+#    url: jdbc:mysql://111.229.226.99:3306/dream_blog?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+#    username: root
+#    password: 12345678
+#    type: com.zaxxer.hikari.HikariDataSource
+#    driverClassName: com.mysql.jdbc.Driver
+##    ##  Hikari 连接池配置 ------ 详细配置请访问：https://github.com/brettwooldridge/HikariCP
+##    ## 最小空闲连接数量
+##    spring.datasource.hikari.minimum-idle=5
+##    ## 空闲连接存活最大时间，默认600000（10分钟）
+##    spring.datasource.hikari.idle-timeout=180000
+##    ## 连接池最大连接数，默认是10
+##    spring.datasource.hikari.maximum-pool-size=10
+##    ## 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+##    spring.datasource.hikari.auto-commit=true
+##    ## 连接池名称
+##    spring.datasource.hikari.pool-name=MyHikariCP
+##    ## 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+##    spring.datasource.hikari.max-lifetime=1800000
+##    ## 数据库连接超时时间,默认30秒，即30000
+##    spring.datasource.hikari.connection-timeout=30000
+##    spring.datasource.hikari.connection-test-query=SELECT 1
+#    hikari:
+#      minimum-idle: 5
+#      idle-timeout: 180000
+#      maximum-pool-size: 10
+#      auto-commit: true
+#      pool-name: MyHikariCP
+#      max-lifetime: 1800000
+#      connection-timeout: 30000
+#      connection-test-query: SELECT 1
+#  redis:
+#    host: 47.111.160.211
+#    password: 123456
+#    port: 6379
+#    database: 3
+#    timeout: 3600
+  mail:
+    host: smtp.exmail.qq.com
+    username: 17835059864@163.com
+    password: 460118025
+    properties:
+       mail:
+         smtp:
+           auth: true
+           starttls:
+              enable: true
+              required: true
+server:
+  port: 8088
+  context-path: /misty
+  tomcat:
+    max-threads: 300
+    max-connections: 200
+    connection-timeout: 5000
+    max-http-post-size: 0
+mybatis:
+  mapper-locations: classpath*:com/ai/service/resource/mapper/*Mapper.xml
+  typeAliasesPackage: com.ai.service.entity
+mybatis-plus:
+  # 支持统配符 * 或者 ; 分割
+  typeEnumsPackage: com.ai.service.enums
+  global-config:
+    db-config:
+      logic-delete-field: flag  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+web:
+  upload-path: D:/pic
+  imageUrlPrefix: D:/pic
+logging:
+  path: logs
+  file: misty.log
+#  config: classpath:logback-spring.xml
+swagger:
+  show: true
+
+

@@ -39,7 +39,10 @@
         <module>SpringBoot-shiro</module>
         <module>SpringBoot-ErrorDemo1</module>
         <module>SpringBoot-redis</module>
-        <module>com-java-nio</module>
+        <module>com.java.nio</module>
+        <module>SprintBoot-Mysql_Read_Write</module>
+        <module>SpringBoot-Kafka</module>
+        <module>SpringBoot-Ueditor</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
