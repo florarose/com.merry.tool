@@ -17,9 +17,9 @@ public class mapDemo2 {
             System.out.println(key + "--------" + value );
         }
         //使用lambda
-        map.keySet().forEach(name->{
-            System.out.println(name+"--------------"+map.get(name));
-        });
+//        map.keySet().forEach(name->{
+//            System.out.println(name+"--------------"+map.get(name));
+//        });
     }
     /**
      * 二、entrySet  遍历方式 ，容量较大的使用推荐此方法
@@ -31,9 +31,9 @@ public class mapDemo2 {
             System.out.println(stringEntry.getKey() + "------" + stringEntry.getValue());
         }
         //使用lambda
-        map.entrySet().forEach((key)->{
-            System.out.println(key.getKey()+"-------------"+key.getValue());
-        });
+//        map.entrySet().forEach((key)->{
+//            System.out.println(key.getKey()+"-------------"+key.getValue());
+//        });
     }
     /**
      * 三、Iterator遍历方式
@@ -66,21 +66,21 @@ public class mapDemo2 {
             System.out.println("value: " + s);
         }
         //使用lambda
-        map.values().forEach(name->{
-            System.out.println("value --------" +name);
-        });
+//        map.values().forEach(name->{
+//            System.out.println("value --------" +name);
+//        });
     }
     /**
      * lambda 遍历方式
      * @param map
      */
     private static void testLambda(Map<String, Object> map) {
-        map.forEach((key, value) -> {
-            System.out.println(key + "  value: " + value );
-        });
+//        map.forEach((key, value) -> {
+//            System.out.println(key + "  value: " + value );
+//        });
     }
     public static void main(String[] args) {
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<String, Object>();
         map.put("A","测试1");
         map.put("B","测试2");
         map.put("C","测试3");

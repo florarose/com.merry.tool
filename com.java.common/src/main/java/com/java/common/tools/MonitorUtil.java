@@ -7,7 +7,7 @@ package com.java.common.tools;
  */
 public class MonitorUtil {
 
-    private static ThreadLocal<Long> tl = new ThreadLocal<>();
+    private static ThreadLocal<Long> tl = new ThreadLocal<Long>();
 
     public static void start() {
         tl.set(System.currentTimeMillis());
