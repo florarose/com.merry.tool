@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Logback configuration. See http://logback.qos.ch/manual/index.html -->
+<configuration scan="true" scanPeriod="60 seconds">
+    <contextName>logback</contextName>
+    <!--文件的存储路径，不要使用相对路径-->
+    <property name="${LOG_FILE}" value="${LOG_PATH}"></property>
+    <!-- trace debug info warn error -->
+    <!-- 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%black(控制台-) %red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger) - %cyan(%msg%n)</pattern>
+        </layout>
+    </appender>
+    <!-- 按照每天生成日志文件 -->
+    <appender name="FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${LOG_FILE}</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_PATH}/snow_log.%d{yyyy-MM-dd}.log.%i.gz</FileNamePattern>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>100MB</MaxFileSize>
+            <MaxHistory>30</MaxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %caller{1} %-5level %logger{50} - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+    <logger name="com.imag.imag.aspect.AspectDto" level="DEBUG" addictivity="false">
+        <appender-ref ref="console" />
+    </logger>
+    <logger name="com.imag" level="DEBUG" addictivity="true">
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="org.springframework.jdbc" level="debug">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="org.springframework.web" level="debug">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="com.vsi.springboot" level="debug">
+        <appender-ref ref="console"/>
+    </logger>
+    <root level="info">
+        <appender-ref ref="console" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

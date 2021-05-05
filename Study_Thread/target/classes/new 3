@@ -1,0 +1,52 @@
+入口程序使用了@EnableFeignClients注解，Spring启动后会扫描标注了@FeignClient注解的接口，然后生成代理类。
+2、我们在@FeignClient接口中指定了value，其实就是指定了在Eureka中的服务名称。
+3、在FeignClient中的定义方法以及使用了SpringMVC的注解(因为Spring Cloud对Feign做了增强，兼容了SpringMVC的注解)，Feign就会根据注解中的内容生成对应的URL，然后基于Ribbon的负载均衡去调用REST服务。
+
+
+
+
+
+
+
+
+
+使用Spring Cloud Netflix中的Eureka作为服务注册中心完成服务注册与发现；而服务间通过Feign和Ribbon实现服务的消费以及负载均衡；
+通过Spring Cloud Config实现了应用多环境的外部化配置以及版本管理。为了使得服务集群更为健壮，使用Hystrix的融断机制来避免在微服务架构中个别服务出现异常时引起的故障蔓延。
+
+
+在该架构中，我们的服务集群包含：内部服务Service A和Service B，他们都会注册与订阅服务至Eureka Server，而Open Service是一个对外的服务，通过负载均衡公开至服务调用方。我们把焦点聚集在对外服务这块，
+这样的实现是否合理，或者是否有更好的实现方式呢？
+
+
+
+
+先来说说这样架构需要做的一些事儿以及存在的不足：
+
+首先，破坏了服务无状态特点。
+为了保证对外服务的安全性，我们需要实现对服务访问的权限控制，而开放服务的权限控制机制将会贯穿并污染整个开放服务的业务逻辑，这会带来的最直接问题是，破坏了服务集群中REST API无状态的特点。
+从具体开发和测试的角度来说，在工作中除了要考虑实际的业务逻辑之外，还需要额外可续对接口访问的控制处理。
+其次，无法直接复用既有接口。
+当我们需要对一个既有的集群内的接口，实现外部访问时，我们不得不通过在原有接口上增加校验逻辑，或增加一个代理调用来实现权限控制，无法直接复用原有的接口。
+
+
+
+
+
+Spring Cloud Config，可以执行远程的配置文件，比如git，但我们修改了配置文件后，通过 spring-boot actuator 监控中心，refresh 方法，可以更新配置内容。实现了在未重启项目的情况下实现了动态修改配置文件内容。
+git的webhook（web钩子）实现自动更新，就是只要仓库中的资源更新，通知谁，这个地址就写上spring-boot actuator的refresh方法的地址，
+
+改进：
+   Spring Cloud Bus消息总线，可以配置Spring Cloud Config 实现微服务引用配置信息的动态更新等。
+    在需要引用配置服务的服务中，引入spring-cloud-starter-bus-amqp，在bootstrap.yml添加rabbitmq的配置 ，就可以整合bus， 然后 把git的webhook（web钩子)的地址该为消息总行啊的地址。
+   
+只是实现了对RabbitMQ
+
+
+
+
+
+
+
+
+日志：
+    日志，在生产环境下，关闭控制台日志打印，

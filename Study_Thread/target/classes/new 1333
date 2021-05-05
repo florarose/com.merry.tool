@@ -1,0 +1,68 @@
+异常记录：
+	org.springframework.beans.factory.BeanCreationException:
+    	Error creating bean with name 'handlerExceptionResolver' defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]
+	org.springframework.beans.BeanInstantiationException: 
+		Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]
+	java.lang.IllegalStateException: 
+		Ambiguous @ExceptionHandler method mapped for [class com.imag.common.exception.GeneralException]: 
+异常原因：
+    org.springframework.beans.factory.BeanCreationException:
+	描述;
+		注入bean异常，出现这个异常就是找不到对应的JavaBean
+	原因：
+		对应的 bean 没有添加注解；
+		
+	org.springframework.beans.BeanInstantiationException
+	描述:
+		没有实例化
+	原因:
+		1、 bean 注入失败导致；
+		2、在创建的类里面声明了public 的属性，而没有构造方法初始化,构造函数异常;
+	java.lang.IllegalStateException	
+	描述：
+	    spring初始化bean对象出错
+	原因：
+	    1、bean 的id 重复，
+		2、如果是注解配置：可能是注解的名称有重复;
+		
+		
+		spring Boot 默认的处理方式就已经足够了，默认情况下Spring Boot 使用WebMvcAutoConfiguration中配置的各种属性。
+		完全控制Spring MVC，你可以在@Configuration注解的配置类上增加@EnableWebMvc，增加该注解以后WebMvcAutoConfiguration中配置就不会生效
+		
+		
+		WebMvcConfigurerAdapter常用的方法
+		
+		
+		
+		/** 解决跨域问题 **/
+public void addCorsMappings(CorsRegistry registry) ;
+
+/** 添加拦截器 **/
+void addInterceptors(InterceptorRegistry registry);
+
+/** 这里配置视图解析器 **/
+void configureViewResolvers(ViewResolverRegistry registry);
+
+/** 配置内容裁决的一些选项 **/
+void configureContentNegotiation(ContentNegotiationConfigurer configurer);
+
+/** 视图跳转控制器 **/
+void addViewControllers(ViewControllerRegistry registry);
+
+/** 静态资源处理 **/
+void addResourceHandlers(ResourceHandlerRegistry registry);
+
+/** 默认静态资源处理器 **/
+void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer);
+
+
+过时方式：继承WebMvcConfigurerAdapter
+现用方式  继承WebMvcConfigurer
+现用方式：继承WebMvcConfigurationSupport
+
+
+docker stop 6863316a29ba && docker rm 6863316a29ba
+
+
+
+

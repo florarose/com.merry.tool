@@ -1,0 +1,26 @@
+  springboot项目读取mysql的binlog日志，在去年的时候，我就遇到一个需求，需要把mysql数据库中的数据的增、删、改的数据准实时做数据清洗，也就是ETL工作，同步到公司的数据仓库greenplum中（数据库数据变化的监听从而同步缓存（如Redis）数据等）。现在将整个详细的操作过程记录如下：
+    (1)、修改mysql数据库的my.cnf配置文件：
+
+        [mysqld]
+        log-bin=mysql-bin  #开启binlog
+        binlog-format=ROW  #选择ROW模式
+        server_id=1        #配置mysql replication需要定义，不能和canal的slaveId重复
+    (2)、重启mysql，确认mysql正常启动
+    (3)、查看binlog是否开启：
+         show  variables  like "%log_bin%"
+         确认log_bin----->ON
+            sql_log_bin----->ON
+
+    (4)、查看binlog日志状态
+            show master status
+    (5)、刷新binlog日志文件
+            flush  logs   #刷新之后会新建立一个binlog日志
+    (6)、清空日志文件
+            reset master
+    (7)、授权 canal 链接 MySQL 账号具有作为 MySQL slave 的权限, 如果已有账户可直接 grant
+
+      CREATE USER canal IDENTIFIED BY 'canal';
+      GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%';
+      -- GRANT ALL PRIVILEGES ON *.* TO 'canal'@'%' ;
+      FLUSH PRIVILEGES;
+ 以上每一步都操作完成后，就开启了binlog日志了，数据库方面的准备工作就算是完成了。 本周会更新剩下的操作每一步

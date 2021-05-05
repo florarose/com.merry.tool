@@ -1,0 +1,29 @@
+1、自定义拦截器，校验请求参数
+	Json已经成为一种主流的数据传输格式，请求参数是整个RequestBody。
+	那么，拦截器中如何获取Json呢？
+	办法是：通过request.getInputStream。
+	RequestBody是流的形式读取，流读了一次就没有了，所以只能被调用一次。
+	在拦截器中读取后，Controller中，通过@RequestBody注解获取Json就会失败。
+	那么，问题来了，如何在拦截器中获取json后，同时可以在Controller再次获取呢？
+	办法是：在使用之前将流储存在一个能持续request生命周期的元素中。
+    通过Spring 的  StreamUtils将刘缓存为为Byte[],
+    StreamUtils.copyToByteArray(request.getInputStream())
+2、通过aop,实现参数的校验;
+3、自定义注解，
+	实现接口幂等性； 用户对于同一操作发起的一次请求或者多次请求的结果是一致的，不会因为多次点击而产生了副作用。
+	接口防刷限流 ： 限制同一个用户在限定时间内，只能访问固定次数
+    1、自定义注解：
+    2、写拦截器
+        	
+			判断是不是SpringMvc请求，如果是通过getMethodAnnotation（Class clazz）获得调用接口是否有
+
+		自定义的注解，如果得到的结果为null则说明该接口不需要拦截器，直接跳出if（）{}方法体。
+
+		如果得到的结果不为空，就说明该接口需要拦截器去校验。
+
+		通过调用HandlerMethod的getMethod（）得到目标Method对象，调用getAnnotation(Class<A> annotationClass)获得CheckParamNullClazz注解对象，
+
+④拦截器可以访问action上下文、值栈里的对象，而过滤器不能访问。
+
+⑥拦截器可以获取IOC容器中的各个bean，而过滤器就不行，这点很重要，在拦截器里注入一个service，可以调用业务逻辑。
+	

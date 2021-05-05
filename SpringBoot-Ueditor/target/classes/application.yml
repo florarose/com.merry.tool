@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: ai
+    servlet:
+      multipart:
+        max-file-size: 104857600 # 单个文件: 1024 * 1024 * 100 bytes = 100MB
+        max-request-size: 1073741824 # 总文件大小 1024 * 1024 * 1024 = 1GB
+  http:
+     encoding:
+       charset: UTF-8
+       enabled: true
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: /META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
+server:
+  port: 8085
+  context-path: /
+  tomcat:
+    max-threads: 300
+    max-connections: 200
+    connection-timeout: 5000
+    max-http-post-size: 0
+web:
+  upload-path: D:/
+  imageUrlPrefix: D:/
