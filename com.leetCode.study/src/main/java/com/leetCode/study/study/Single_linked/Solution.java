@@ -1,4 +1,4 @@
-package com.leetCode.study.Demo_2019_8_8_Linked.jichu.Single_linked;
+package com.leetCode.study.study.Single_linked;
 
 /**
  * @author ldt merry

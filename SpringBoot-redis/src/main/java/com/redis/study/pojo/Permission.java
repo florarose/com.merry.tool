@@ -1,6 +1,7 @@
 package com.redis.study.pojo;
 
-import com.easy.securityOauth2Credentials.base.BaseEntity;
+
+import com.redis.study.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

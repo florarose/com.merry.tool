@@ -1,4 +1,5 @@
-package com.leetCode.study.Demo_2019_8_8_Linked.jichu.Single_linked;
+package com.leetCode.study.study.Single_linked;
+import com.leetCode.study.study.Single_linked.*;
 
 /**
  * 单链表的增删

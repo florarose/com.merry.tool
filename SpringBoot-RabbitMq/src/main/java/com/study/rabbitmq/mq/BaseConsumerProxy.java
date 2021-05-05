@@ -74,7 +74,6 @@ public class BaseConsumerProxy {
                 correlationId = value;
             }
         }
-
         return correlationId;
     }
 
@@ -89,7 +88,6 @@ public class BaseConsumerProxy {
         if (null == msgLog || msgLog.getStatus().equals(Constant.MsgLogStatus.CONSUMED_SUCCESS)) {
             return true;
         }
-
         return false;
     }
 
