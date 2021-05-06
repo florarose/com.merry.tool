@@ -7,4 +7,5 @@ package com.ldt.es;
  * @version: 1.0.0
  */
 public class ElasticsearchApplication {
+
 }
